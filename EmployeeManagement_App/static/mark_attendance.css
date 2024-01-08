@@ -1,0 +1,50 @@
+.mark-attendance-body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.mark-attendance-container {
+    text-align: center;
+    margin: 20px;
+}
+
+.mark-attendance-title {
+    color: #333;
+}
+
+.attendance-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-form-label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.attendance-form-input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.attendance-form-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.attendance-form-button:hover {
+    background-color: #217dbb;
+}

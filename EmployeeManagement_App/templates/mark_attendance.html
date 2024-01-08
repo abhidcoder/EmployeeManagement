@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="static/mark_attendance.css"> 
+</head>
+<body class="mark-attendance-body">
+    <div class="mark-attendance-container">
+        <h1 class="mark-attendance-title">Mark Attendance</h1>
+        <p>Please click on the icons to fill</p>
+        <form class="attendance-form" id="attendanceForm">
+            <label class="attendance-form-label" for="employeeId">Employee ID:</label>
+            <select class="attendance-form-input" id="employeeId" name="employee_id" required>
+                {% for employee in employees %}
+                    <option value="{{ employee.id }}">{{ employee.id }}</option>
+                {% endfor %}
+            </select>
+
+            <label class="attendance-form-label" for="inTime">In Time:</label>
+            <input class="attendance-form-input" type="time" id="inTime" name="in_time" required>
+
+            <label class="attendance-form-label" for="outTime">Out Time:</label>
+            <input class="attendance-form-input" type="time" id="outTime" name="out_time" required>
+
+            <label class="attendance-form-label" for="date">Date:</label>
+            <input class="attendance-form-input" type="date" id="date" name="date" required>
+
+            <button class="attendance-form-button" type="button" onclick="markAttendance()">Mark Attendance</button>
+        </form>
+
+        <script>
+      function markAttendance() {
+    // Get form data
+    const formData = new FormData(document.getElementById('attendanceForm'));
+
+    // Convert FormData to JSON
+    const jsonData = {};
+    formData.forEach((value, key) => {
+        jsonData[key] = value;
+    });
+
+    // Send JSON data to the endpoint
+    fetch('/mark_attendance', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jsonData),
+    })
+        .then(response => response.json())
+        .then(data => {
+        
+            // Display error message
+            alert(data.message);
+
+                console.log(data.message);
+                // Handle the response as needed
+                location.href='/';
+            })
+            .catch(error => {
+                // Display general error message
+                alert('Error: ' + error.message);
+            });
+        }
+
+        </script>
+    </div>
+</body>
+</html>

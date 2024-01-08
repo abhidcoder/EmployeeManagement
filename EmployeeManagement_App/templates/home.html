@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <link rel="stylesheet" href="static/home.css">
+</head>
+<body class="home_body">
+    <div class="home_container">
+       
+        <h1 class="page-title">Welcome To Home Page</h1>
+        <br>
+        <button class="btn" onclick="location.href='/department_report'">Go to Department Report</button>
+        <button class="btn" onclick="location.href='/render_mark_attendance'">Mark Attendance</button>
+        <button class="btn" onclick="location.href='/render_add_employee'">Add Employee</button>
+        <br>
+        <h2 class="page-title">Employee List</h2>
+        <table class="employee-table" border="1">
+            <tr class="home_tr">
+                <th class="home_th">Id</th>
+                <th class="home_th">Name</th>
+                <th class="home_th">Address</th>
+                <th class="home_th">Email</th>
+                <th class="home_th">Designation</th>
+                <th class="home_th">Department</th>
+                <th class="home_th">Date of Joining</th>
+                <th colspan="2" class="home_th">Total Attendance</th>
+            </tr>
+            {% for employee in employees %}
+                <tr class="home_tr">
+                    <td class="home_td">{{ employee.id }}</td>
+                    <td class="home_td">{{ employee.name }}</td>
+                    <td class="home_td">{{ employee.address }}</td>
+                    <td class="home_td">{{ employee.email }}</td>
+                    <td class="home_td">{{ employee.designation }}</td>
+                    <td class="home_td">{{ employee.department }}</td>
+                    <td class="home_td">{{ employee.date_of_joining }}</td>
+                    <td class="home_td" rowspan="2">{{ employee.attendance|length }}</td>
+                    <td class="home_td">
+                        <a href="{{ url_for('render_attendance', employee_id=employee.id) }}">
+                            <button class="btn">View Details</button>
+                        </a>
+                    </td>
+                </tr>
+                <tr class="home_tr">
+                    <td colspan="7"></td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+</body>
+</html>

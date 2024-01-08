@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='department.css') }}">
+  
+</head>
+<body class="department-body">
+    <div class="department-container">
+        <h1 class="page-title">Department Report</h1>
+        <table class="department-table">
+            <tr>
+                <th class="department-th">Department</th>
+                <th class="department-th">Employee Count</th>
+            </tr>
+            {% for entry in report %}
+                <tr class="department-tr">
+                    <td class="department-td">{{ entry.department }}</td>
+                    <td class="department-td">{{ entry.employee_count }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
